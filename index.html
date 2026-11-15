@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nutritional Awareness and Its Impact on Community Health and Well-Being — Community Service Project">
+  <title>Nutritional Awareness | Community Health & Well-Being</title>
+  <style>
+    :root {
+      --ink: #294b4d;
+      --muted: #687d7d;
+      --blue: #a8dce5;
+      --pink: #f8b3c8;
+      --lavender: #b6a2ce;
+      --sage: #789b80;
+      --cream: #f4e9d8;
+      --paper: #f7faf8;
+      --white: #ffffff;
+      --line: #e2ece8;
+      --shadow: 0 14px 36px rgba(45, 82, 77, .09);
+      --radius: 24px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Aptos", "Segoe UI", system-ui, sans-serif;
+      line-height: 1.65;
+    }
+    a { color: inherit; text-decoration: none; }
+    .topbar {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(247,250,248,.9);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(120,155,128,.18);
+    }
+    .nav {
+      max-width: 1120px; margin: auto; padding: 13px 22px;
+      display: flex; align-items: center; justify-content: space-between; gap: 20px;
+    }
+    .brand { font-weight: 800; letter-spacing: .02em; font-size: 1rem; }
+    .brand span { color: #779c84; }
+    .nav-links { display: flex; gap: 20px; flex-wrap: wrap; font-size: .9rem; color: #557071; }
+    .nav-links a:hover { color: #bd7897; }
+    .menu-button { display: none; border: 0; background: var(--blue); color: var(--ink); padding: 9px 13px; border-radius: 12px; font-weight: 700; }
+    main { overflow: hidden; }
+    .container { width: min(1120px, calc(100% - 40px)); margin: auto; }
+    .hero { padding: 76px 0 54px; }
+    .hero-card {
+      position: relative; overflow: hidden; border-radius: 34px;
+      padding: clamp(30px, 6vw, 72px);
+      background: linear-gradient(120deg, #e5f4f3 0%, #f9e8ef 54%, #eee8f6 100%);
+      box-shadow: var(--shadow);
+    }
+    .hero-card:after {
+      content: ""; position: absolute; width: 300px; height: 300px; border-radius: 50%;
+      right: -75px; bottom: -140px; background: rgba(168,220,229,.48);
+    }
+    .eyebrow {
+      display: inline-block; padding: 6px 13px; border-radius: 999px;
+      background: rgba(120,155,128,.16); color: #557b61;
+      text-transform: uppercase; letter-spacing: .12em; font-size: .72rem; font-weight: 800;
+    }
+    h1, h2, h3 { line-height: 1.18; margin: 0 0 16px; }
+    h1 { max-width: 800px; font-family: Georgia, serif; font-size: clamp(2.35rem, 6vw, 4.7rem); letter-spacing: -.035em; }
+    .hero p { max-width: 720px; font-size: 1.1rem; color: #557071; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 26px; position: relative; z-index: 1; }
+    .button { display: inline-flex; align-items: center; justify-content: center; padding: 12px 19px; border-radius: 14px; font-weight: 750; }
+    .button.primary { background: #83bdc9; color: #173f46; }
+    .button.secondary { background: rgba(255,255,255,.75); color: #536c70; }
+    section { padding: 34px 0; }
+    .section-heading { margin-bottom: 22px; }
+    .section-heading .eyebrow { margin-bottom: 13px; }
+    h2 { font-family: Georgia, serif; font-size: clamp(1.9rem, 4vw, 2.8rem); letter-spacing: -.02em; }
+    .section-heading p { color: var(--muted); max-width: 760px; margin: 0; }
+    .content-box {
+      background: var(--white); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: clamp(22px, 4vw, 36px); box-shadow: var(--shadow);
+    }
+    .soft-blue { background: #edf8fa; }
+    .soft-pink { background: #fff0f4; }
+    .soft-lavender { background: #f3eff8; }
+    .soft-sage { background: #eff5ef; }
+    .two-col { display: grid; grid-template-columns: 1.1fr .9fr; gap: 22px; align-items: stretch; }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .mini-card { border-radius: 20px; padding: 22px; border: 1px solid rgba(100,140,130,.12); background: #fff; }
+    .mini-card .number { font-size: 1.8rem; margin-bottom: 8px; }
+    .mini-card h3 { font-size: 1.05rem; }
+    .mini-card p { margin: 0; color: var(--muted); font-size: .94rem; }
+    ul.clean { padding-left: 20px; margin: 12px 0 0; }
+    ul.clean li { margin: 8px 0; }
+    .nutrient-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 13px; }
+    .nutrient { padding: 18px; border-radius: 18px; background: white; border: 1px solid var(--line); }
+    .nutrient strong { display: block; margin-bottom: 5px; }
+    .nutrient small { color: var(--muted); }
+    .plate {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 18px;
+    }
+    .plate div { border-radius: 18px; padding: 18px; }
+    .plate div:nth-child(1) { background: #e8f3e8; }
+    .plate div:nth-child(2) { background: #fff0d9; }
+    .plate div:nth-child(3) { background: #e8f4f7; }
+    .plate div:nth-child(4) { background: #f8eaf0; }
+    .table-wrap { overflow-x: auto; border-radius: 18px; border: 1px solid var(--line); }
+    table { width: 100%; border-collapse: collapse; min-width: 620px; background: white; }
+    th, td { padding: 14px 16px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+    th { background: #eaf3ef; color: #385b53; font-size: .85rem; text-transform: uppercase; letter-spacing: .04em; }
+    tr:last-child td { border-bottom: 0; }
+    .week-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    details { background: white; border: 1px solid var(--line); border-radius: 18px; padding: 18px 20px; }
+    details[open] { background: #fbfdfb; }
+    summary { cursor: pointer; font-weight: 800; color: #456c61; }
+    details p { color: var(--muted); margin-bottom: 0; }
+    .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .photo-card { margin: 0; overflow: hidden; border-radius: 18px; background: white; border: 1px solid var(--line); box-shadow: 0 8px 22px rgba(45,82,77,.07); }
+    .photo-card img { display: block; width: 100%; height: 250px; object-fit: cover; background: #e8efeb; }
+    .photo-card figcaption { padding: 12px 14px; font-size: .9rem; color: #607775; }
+    .poster-note { border-radius: 18px; padding: 22px; background: linear-gradient(120deg,#f0f8ef,#edf8fa,#fff0f4); }
+    footer { margin-top: 44px; padding: 36px 20px; background: #294b4d; color: #edf7f3; text-align: center; }
+    footer p { margin: 6px 0; color: #c9ded7; }
+    .backtop { display: inline-block; margin-top: 12px; color: #f8dce7; font-weight: 700; }
+    @media (max-width: 800px) {
+      .two-col { grid-template-columns: 1fr; }
+      .cards { grid-template-columns: repeat(2, 1fr); }
+      .nutrient-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery { grid-template-columns: repeat(2, 1fr); }
+      .nav-links { gap: 12px; font-size: .82rem; }
+    }
+    @media (max-width: 560px) {
+      .nav { align-items: flex-start; }
+      .menu-button { display: block; }
+      .nav-links { display: none; position: absolute; left: 12px; right: 12px; top: 58px; padding: 16px; background: white; border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); flex-direction: column; }
+      .nav-links.open { display: flex; }
+      .hero { padding-top: 30px; }
+      .hero-card { border-radius: 24px; }
+      .cards, .week-grid, .gallery { grid-template-columns: 1fr; }
+      .nutrient-grid { grid-template-columns: 1fr 1fr; }
+      .photo-card img { height: 230px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="#home">Nourish<span>.</span></a>
+      <button class="menu-button" id="menuButton" aria-expanded="false" aria-controls="navLinks">Menu ☰</button>
+      <div class="nav-links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#objectives">Objectives</a>
+        <a href="#nutrients">Nutrients</a>
+        <a href="#balanced-diet">Balanced Diet</a>
+        <a href="#survey">Survey & Plan</a>
+        <a href="#activities">Activities</a>
+        <a href="#gallery">Gallery</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container hero" id="home">
+      <div class="hero-card">
+        <span class="eyebrow">Eat well · Feel well</span>
+        <h1>A little healthier, a lot happier.</h1>
+        <p>Simple nutrition, colourful food and mindful living. A community service project on <strong>Nutritional Awareness and Its Impact on Community Health and Well-Being</strong>.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#about">Explore the project ↓</a>
+          <a class="button secondary" href="#gallery">View activity photos</a>
+        </div>
+      </div>
+    </div>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">01 · Project overview</span>
+          <h2>Introduction and Need for the Project</h2>
+          <p>Nutrition supports growth, energy, immunity and the prevention of disease. Nutritional awareness helps people make informed food choices, maintain food hygiene and build healthy eating habits.</p>
+        </div>
+        <div class="two-col">
+          <article class="content-box">
+            <h3>About the project</h3>
+            <p>This Community Service Project focuses on nutritional awareness and its impact on community health and well-being in <strong>Balaji Nagar, Nellore, Andhra Pradesh</strong>.</p>
+            <p>It explores the importance of essential nutrients, balanced food choices, safe water and food hygiene. It also highlights affordable meals made with locally available foods such as rice, millets, pulses, vegetables, fruits, milk and eggs.</p>
+          </article>
+          <article class="content-box soft-pink">
+            <h3>Why this project is needed</h3>
+            <ul class="clean">
+              <li>Some families may need practical guidance to combine different food groups.</li>
+              <li>Irregular meals and frequent sugary drinks or packaged snacks can affect health.</li>
+              <li>Children, adolescents, pregnant women and older adults may have different nutritional needs.</li>
+              <li>Safe water, food storage and handwashing help reduce food-related illness.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="objectives">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">02 · Project goals</span>
+          <h2>Key Objectives</h2>
+          <p>The project aims to share clear, practical nutrition information and encourage healthier everyday choices.</p>
+        </div>
+        <div class="cards">
+          <article class="mini-card soft-blue"><div class="number">🥗</div><h3>Understand nutrition</h3><p>Understand the meaning and importance of nutritional awareness.</p></article>
+          <article class="mini-card soft-pink"><div class="number">🏡</div><h3>Know community needs</h3><p>Identify common food habits and nutrition-related concerns in the selected community.</p></article>
+          <article class="mini-card soft-lavender"><div class="number">🍎</div><h3>Explain balanced diets</h3><p>Explain essential nutrients and the importance of a balanced diet.</p></article>
+          <article class="mini-card soft-sage"><div class="number">🌾</div><h3>Promote local foods</h3><p>Promote affordable, healthy meals using locally available foods.</p></article>
+          <article class="mini-card soft-blue"><div class="number">💧</div><h3>Encourage safe habits</h3><p>Create awareness about food hygiene, safe water and healthy lifestyle practices.</p></article>
+          <article class="mini-card soft-pink"><div class="number">🤝</div><h3>Build participation</h3><p>Use discussions, posters and simple demonstrations to involve the community.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="nutrients">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">03 · Learn the basics</span>
+          <h2>Nutrients, Food Groups and Balanced Diet</h2>
+          <p>Different nutrients perform different roles. Eating a variety of foods helps provide what the body needs.</p>
+        </div>
+        <div class="content-box">
+          <div class="nutrient-grid">
+            <div class="nutrient"><strong>Carbohydrates</strong><small>Main source of energy. Sources: rice, wheat, ragi, millets and potato.</small></div>
+            <div class="nutrient"><strong>Proteins</strong><small>Support growth and tissue repair. Sources: pulses, beans, chickpeas, eggs, milk and fish.</small></div>
+            <div class="nutrient"><strong>Fats</strong><small>Provide energy and support cell function. Sources: nuts, seeds, oils and fish.</small></div>
+            <div class="nutrient"><strong>Vitamins</strong><small>Support immunity, vision, skin and body processes. Sources: fruits and vegetables.</small></div>
+            <div class="nutrient"><strong>Minerals</strong><small>Support bones, blood and nerve function. Sources: leafy greens, pulses, dairy, nuts and seeds.</small></div>
+            <div class="nutrient"><strong>Fibre</strong><small>Supports digestion and bowel health. Sources: whole grains, vegetables, fruits and pulses.</small></div>
+            <div class="nutrient"><strong>Water</strong><small>Regulates temperature and supports body functions. Choose safe drinking water.</small></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="balanced-diet">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">04 · Everyday food choices</span>
+          <h2>What Is a Balanced Diet?</h2>
+          <p>A balanced diet includes a variety of foods from different food groups in suitable amounts.</p>
+        </div>
+        <div class="two-col">
+          <article class="content-box soft-sage">
+            <h3>Build a balanced plate</h3>
+            <div class="plate">
+              <div><strong>Vegetables & fruit</strong><br>Include a variety of colours and seasonal choices.</div>
+              <div><strong>Cereals & millets</strong><br>Rice, wheat, ragi and other millets provide energy.</div>
+              <div><strong>Protein foods</strong><br>Dal, beans, eggs, fish or another suitable option.</div>
+              <div><strong>Milk & healthy fats</strong><br>Curd, milk or alternatives; use oils in moderation.</div>
+            </div>
+          </article>
+          <article class="content-box">
+            <h3>Healthy habits to remember</h3>
+            <ul class="clean">
+              <li>Choose affordable, local and seasonal foods.</li>
+              <li>Eat regular meals and include a variety of food groups.</li>
+              <li>Wash fruits and vegetables before use.</li>
+              <li>Drink safe water and practise proper food hygiene.</li>
+              <li>Use salt and added sugar in moderation.</li>
+              <li>Enjoy meals mindfully and avoid food waste.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="survey">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">05 · Community participation</span>
+          <h2>Survey, Activities and Implementation Plan</h2>
+          <p>A simple voluntary survey can help understand existing awareness and identify topics that may be useful for the community.</p>
+        </div>
+        <div class="content-box">
+          <h3>Sample survey questions</h3>
+          <ul class="clean">
+            <li>Do you usually eat breakfast?</li>
+            <li>Can you name three different food groups?</li>
+            <li>How often do you include vegetables or fruits in your meals?</li>
+            <li>Do you include pulses, beans, eggs, milk or another protein source?</li>
+            <li>Do you check food expiry dates and storage instructions?</li>
+            <li>Do you wash your hands before eating?</li>
+            <li>Would you attend a short nutrition awareness session?</li>
+          </ul>
+          <p class="poster-note"><strong>Participation note:</strong> Participation should be voluntary. Explain the purpose, avoid collecting names unless essential, and present results as group totals. A questionnaire should not be used to diagnose nutritional deficiencies.</p>
+        </div>
+        <div class="content-box" style="margin-top:16px">
+          <h3>Implementation plan</h3>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Phase</th><th>Activities</th><th>Output</th></tr></thead>
+              <tbody>
+                <tr><td>1. Planning</td><td>Choose area, obtain permission, prepare questionnaire and materials.</td><td>Project plan and schedule</td></tr>
+                <tr><td>2. Baseline survey</td><td>Collect voluntary responses and identify awareness gaps.</td><td>Baseline summary</td></tr>
+                <tr><td>3. Awareness</td><td>Conduct talks, poster display and group discussions.</td><td>Community participation</td></tr>
+                <tr><td>4. Demonstration</td><td>Show balanced plate, food hygiene and low-cost meal ideas.</td><td>Practical learning</td></tr>
+                <tr><td>5. Follow-up</td><td>Repeat selected questions and collect feedback.</td><td>Post-awareness summary</td></tr>
+                <tr><td>6. Reporting</td><td>Compare results and share recommendations.</td><td>Final CSP report</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="activities">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">06 · Field work</span>
+          <h2>Activity Log and Weekly Reports</h2>
+          <p>The weekly activities covered nutrition basics, balanced diets, life-stage nutrition, food hygiene and community awareness.</p>
+        </div>
+        <div class="week-grid">
+          <details open><summary>Week 1 · Nutrition awareness basics</summary><p>Explored what nutrition means, major nutrients, balanced diets, safe drinking water, fruits and vegetables, and healthy food habits.</p></details>
+          <details><summary>Week 2 · Malnutrition awareness</summary><p>Discussed forms of malnutrition, effects of undernutrition, micronutrient deficiencies, iron, anaemia prevention and nutrition during childhood and adolescence.</p></details>
+          <details><summary>Week 3 · Nutrition across life stages</summary><p>Covered pregnancy, breastfeeding, complementary feeding, safe meals for children, community health services and nutrition for older adults.</p></details>
+          <details><summary>Week 4 · Household visits and balanced diet</summary><p>Revisited balanced diet concepts and discussed the importance of fruits and healthy food choices during community interactions.</p></details>
+          <details><summary>Week 5 · Food hygiene and safety</summary><p>Discussed food hygiene, safe food storage, contamination, handwashing and ways to reduce food waste.</p></details>
+          <details><summary>Week 6 · Community awareness and feedback</summary><p>Focused on nutrition awareness through discussions, posters and simple demonstrations, with community participation and feedback.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">07 · Project moments</span>
+          <h2>Community Visits and Activity Gallery</h2>
+          <p>Photographs from nutrition awareness interactions, poster sharing and community outreach activities.</p>
+        </div>
+        <div class="gallery">
+          <figure class="photo-card">
+      <img src="assets/project-photo-01.jpeg" alt="Nutrition awareness project photograph 1" loading="lazy">
+      <figcaption>Community nutrition awareness activity</figcaption>
+    </figure>
+<figure class="photo-card">
+      <img src="assets/project-photo-02.jpeg" alt="Nutrition awareness project photograph 2" loading="lazy">
+      <figcaption>Community nutrition awareness activity</figcaption>
+    </figure>
+<figure class="photo-card">
+      <img src="assets/project-photo-03.jpeg" alt="Nutrition awareness project photograph 3" loading="lazy">
+      <figcaption>Community nutrition awareness activity</figcaption>
+    </figure>
+<figure class="photo-card">
+      <img src="assets/project-photo-04.jpeg" alt="Nutrition awareness project photograph 4" loading="lazy">
+      <figcaption>Community nutrition awareness activity</figcaption>
+    </figure>
+<figure class="photo-card">
+      <img src="assets/project-photo-05.jpeg" alt="Nutrition awareness project photograph 5" loading="lazy">
+      <figcaption>Community nutrition awareness activity</figcaption>
+    </figure>
+<figure class="photo-card">
+      <img src="assets/project-photo-06.jpeg" alt="Nutrition awareness project photograph 6" loading="lazy">
+      <figcaption>Community nutrition awareness activity</figcaption>
+    </figure>
+<figure class="photo-card">
+      <img src="assets/project-photo-07.jpeg" alt="Nutrition awareness project photograph 7" loading="lazy">
+      <figcaption>Community nutrition awareness activity</figcaption>
+    </figure>
+<figure class="photo-card">
+      <img src="assets/project-photo-08.jpeg" alt="Nutrition awareness project photograph 8" loading="lazy">
+      <figcaption>Community nutrition awareness activity</figcaption>
+    </figure>
+<figure class="photo-card">
+      <img src="assets/project-photo-09.jpeg" alt="Nutrition awareness project photograph 9" loading="lazy">
+      <figcaption>Community nutrition awareness activity</figcaption>
+    </figure>
+<figure class="photo-card">
+      <img src="assets/project-photo-10.jpeg" alt="Nutrition awareness project photograph 10" loading="lazy">
+      <figcaption>Community nutrition awareness activity</figcaption>
+    </figure>
+<figure class="photo-card">
+      <img src="assets/project-photo-11.jpeg" alt="Nutrition awareness project photograph 11" loading="lazy">
+      <figcaption>Community nutrition awareness activity</figcaption>
+    </figure>
+<figure class="photo-card">
+      <img src="assets/project-photo-12.jpeg" alt="Nutrition awareness project photograph 12" loading="lazy">
+      <figcaption>Community nutrition awareness activity</figcaption>
+    </figure>
+<figure class="photo-card">
+      <img src="assets/project-photo-13.png" alt="Nutrition awareness project photograph 13" loading="lazy">
+      <figcaption>Community nutrition awareness activity</figcaption>
+    </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="conclusion">
+      <div class="container">
+        <div class="content-box soft-lavender">
+          <span class="eyebrow">08 · Final reflection</span>
+          <h2>Key Learnings and Conclusion</h2>
+          <ul class="clean">
+            <li>Nutrition awareness helps people understand the connection between food and health.</li>
+            <li>Students can support awareness through discussions, posters and simple demonstrations.</li>
+            <li>Community participation makes health messages more practical and effective.</li>
+            <li>Feedback can help assess understanding and improve future awareness programmes.</li>
+          </ul>
+          <p>The activities helped us understand how informed food choices, balanced nutrition, food hygiene and community participation contribute to better health and well-being. Sharing reliable nutrition information can encourage healthier habits among families.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <strong>Nutritional Awareness and Its Impact on Community Health and Well-Being</strong>
+    <p>Community Service Project · Balaji Nagar, Nellore, Andhra Pradesh</p>
+    <p>Designed with care · Eat well, feel well.</p>
+    <a class="backtop" href="#home">Back to top ↑</a>
+  </footer>
+
+  <script>
+    const menuButton = document.getElementById("menuButton");
+    const navLinks = document.getElementById("navLinks");
+    menuButton.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuButton.setAttribute("aria-expanded", String(isOpen));
+    });
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuButton.setAttribute("aria-expanded", "false");
+      });
+    });
+  </script>
+</body>
+</html>
